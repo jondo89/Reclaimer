@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Calculation Engine</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" media="screen" href="https://cdnjs.cloudflare.com/ajax/libs/handsontable/0.12.2/handsontable.css">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+
+
+<div class="col-md-11">
+<div class="row">
+  <div class="col-md-6">
+
+        <form class="form-horizontal" id="workingform">
+          <fieldset>
+            <!-- Form Name -->
+            <legend>Input Form</legend>
+            <div id="textarea"></div>
+          </fieldset>
+        </form>
+
+
+  </div>
+  <div class="col-md-6">
+<legend>Data Extraction</legend>
+
+
+          <h3>JSON String</h3>
+
+          <pre id="result">
+          </pre>
+
+          <h3>Captured Data</h3>
+
+          <table class="table table-bordered" id="Variabletable">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Value</th>
+                <th>Unit</td>
+                </tr>
+              </thead>
+
+              <tbody id="Variabletablebody">
+              </tbody>
+
+            </table>
+
+  </div>
+</div>
+
+
+
+<legend>Database Scheme</legend>
+<div id="example1" class="handsontable"  style="font-size:11px;width:100%;">
+
+<legend>Force Directed Graph</legend>
+<div style="width:100%;height:250px,border:1px,padding-top:55px">
+<div id="container" style="width:100%;height:250px"></div>
+</div>
+
+  <style type="text/css">
+    body {
+      margin: 0;
+    }
+    #container {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+
+
+</div>
+
+
+
+
+
+
+
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handsontable/0.12.2/handsontable.full.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sigma.js/1.0.3/sigma.js"></script>
+
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+<script src="index.js"></script>
+<script src="calculationinput.js"></script>
+<script type="text/javascript">
+
+
+
+//this is to add the sigma graph
+function getRandomInt(min, max) {
+    return Math.floor(Math.random() * (max - min + 10)) + min;
+}
+
+var s = new sigma('container');
+
+for (var i = 0; i < input.length; i++) {
+
+
+   var teststt = {
+      id: input[i].variable,
+      label: input[i].shortDescription,
+      x:  getRandomInt(2, 2),
+      y:  getRandomInt(2, 2),
+      size: 1,
+      color: '#f00'
+      }
+s.graph.addNode(teststt)
+
+};
+
+for (var i = 0; i < input.length; i++) {
+  for (var key in input[i].formula[0]) {
+    console.log(key)
+    console.log(input[i].variable)
+    console.log(key)
+
+
+s.graph.addEdge({
+      id: "i"+Math.random(),
+      // Reference extremities:
+      source: input[i].variable,
+      target: key,
+      type: "arrow"
+});
+  };
+};
+
+// Refresh the graph to see the changes:
+s.refresh();
+
+
+
+
+
+//get headers for the table
+  var headingArray=[]
+    for (var key in input[0]) {
+      headingArray.push(key);
+    };
+
+//Show the Current variable Table.
+container = document.getElementById('example1')
+settings1 = {
+  data:input,  
+  colHeaders: headingArray,
+  minSpareRows: 0 //always keep at least 1 spare row at the bottom
+},
+hot = new Handsontable(container,settings1);
+hot.render();
+
+
+
+//I think that each varible will have to hold all of the variables that it affects.
+
+for (var i = 0; i < input.length; i++) {
+$( "#textarea" ).append(function() {
+  var html1 = '<div class="form-group"><label class="col-md-6 control-label" for="appendedtext">'
+  var html2 = '</label><div class="col-md-6"><div class="input-group"><input id="'
+  var html6 = '" name="'
+  var html7='" class="form-control" placeholder="'
+  var html3= '" type="text"><span class="input-group-addon">'
+  var html4='</span></div><p class="help-block">'
+  var html5='</p></div></div>'
+
+var combinedHtml = html1+
+  input[i].shortDescription+
+  html2+
+  //this could cause long term issues , best course of action is to continue blindly
+  i +
+  html6+
+  input[i].variable +   
+  html7+  
+  input[i].defaultvalue+
+  html3+
+  input[i].unit+
+  html4+
+  input[i].decription+
+  html5;
+  return  combinedHtml
+})
+};
+
+
+
+
+
+
+  $( "#textarea" ).change(function(event) {
+
+    //-------------------------------------------------
+    //this line is pull the form data into a JSON array
+    $('#result').text(JSON.stringify($('form').serializeObject()))
+    var data = (($('form').serializeObject()))
+    //-------------------------------------------------
+    //this line is pull the form data into a JSON array
+
+    //-------------------------------------------------
+    //This pulls the array into the data table
+    drawTable(data)
+    //-------------------------------------------------
+    //This pulls the array into the data table    
+
+    //-------------------------------------------------
+    //in order to handle the name of the input into the formula in the JSON , the array has to be changed into variable values , as the JSON needs to be as simple as possible , as such this for loop should remove most of that complexity.
+    for (var key in data) {
+      if (data[key]  ==""){
+        string1 = "var "+ key + "= 0 "
+        eval (string1)
+      } else{
+        
+        string1 = "var "+ key + '= ' + data[key]
+        eval (string1)
+        };
+    };
+
+
+    //-------------------------------------------------
+
+    //console.log(data.beltWidth)
+    //console.log(event.target.id)
+    //console.log(triggerInput)
+    //console.log(data.beltWidth)
+
+    //-------------------------------------------------
+    //this gets the name of the triggered input box
+    var triggerInput = eval(event.target.id)
+    //-------------------------------------------------
+    //this gets the name of the triggered input box
+
+    //-------------------------------------------------
+    //this gets the key names for the formula component of the input JSON
+    //this will determine all of the cells to be modified on the form.
+    var keystorage =[];
+    for (var key in input[triggerInput].formula[0]) {
+     // console.log(key)
+     // console.log(input[triggerInput].formula[0][key])
+
+     //this pulls out each equation and processes
+     var CalculationEvent = eval(input[triggerInput].formula[0][key])
+     
+     var tempvar = key;
+      $("input[name='"+tempvar+"']").val(CalculationEvent);
+    }
+
+
+
+
+    //it would problably require a trigger onChange function here to update all cascading changes.
+
+});
+
+/*
+var input=
+[
+{
+  "variable": "beltWidth",
+  "shortDescription" : "Belt Width",
+  "unit": "mm",
+  "defaultvalue":"1000",
+  "decription": "Linear width of the belt layed flat",
+  "type":"textarea",
+  "formula": [{
+   "1": "beltWidth/beltFOS",
+   "2": ""
+ }
+ ]
+},
+{
+  "variable": "beltClass",
+  "shortDescription" : "Belt Class",  
+  "unit": "kN",
+  "defaultvalue":"800",
+  "decription": "Tensile strength of belting with FOS",
+  "type":"textarea",
+   "formula": [{
+   "0": "",
+   "2": ""
+ }
+ ]
+},
+{
+  "variable": "beltFOS",
+  "shortDescription" : "Belt FOS",  
+  "unit": "Null",
+  "defaultvalue":"10",
+  "decription": "Belting FOS for belt class",
+  "type":"textarea",
+  "formula": [{
+   "0": "input[1]/input[3]",
+   "1": "input[1]/input[3]"
+ }
+ ]
+}
+]*/
+
+
+</script>    
+  </body>
+</html>

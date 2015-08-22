@@ -1,0 +1,1259 @@
+  <!DOCTYPE html>
+  <html>
+  <head>
+    <meta charset="utf-8"/>
+
+    <script src="http://code.jquery.com/jquery-latest.min.js"
+    type="text/javascript"></script>
+    <script type="text/javascript" src="5rollbelt.js"></script>
+    <script type="text/javascript" src="1rollbelt.js"></script>
+    <script type="text/javascript" src="2rollbelt.js"></script>
+    <script type="application/javascript">
+  //Idler Variables
+  var rolldiameter=127;
+  var rolloverlap=5;
+  var rollwidth=390;
+  var shaftseries=25;
+  var numberofrolls=5;
+  var troughangle=22.5;
+  var beltthickness=25;
+  var beltradius=150;
+  var beltwidth=1200;
+  var guagelength=500;
+  var flatlength=19;
+  var radiussetback=55;
+  var troughanglerads=Math.PI*troughangle/180;
+scale=1;
+
+
+  //canvas scale variable
+
+
+  //draw variable initiation ( creation of variable array )
+  var drawvar = [[0,0,0,5]];
+
+  // remember canvas works up side down
+
+  //Draw Funcion
+
+  function draw() {
+    var canvas = document.getElementById('canvas');
+    if (canvas.getContext){
+    //draw grid
+      //Initiate
+      var ctx = canvas.getContext('2d');
+      var xscale = scale;
+      var yscale =scale;
+      ctx.fillStyle= "#f6f6f6";
+      ctx.fillRect(0,0,800,800);
+
+      for (var x = 0.5; x < 800; x += 10) {
+        ctx.moveTo(x, 0);
+        ctx.lineTo(x, 800);
+      }
+      for (var y = 0.5; y < 800; y += 10) {
+        ctx.moveTo(0, y);
+        ctx.lineTo(800, y);
+      }
+
+      ctx.strokeStyle = "#eee";
+      ctx.stroke();
+      //scale canvas
+      ctx.scale(xscale, yscale);
+      //center canvas
+
+
+      var traslatex=leftright*10 / 2 /  xscale
+      var traslatey=updown*10 / 2 / yscale
+
+      ctx.translate(traslatex,traslatey);
+
+      ctx.scale(-1, -1);
+      ctx.strokeStyle = "#000000";
+      ctx.save();
+
+
+      function drawrectangle(x,y,height,width,angle) {
+
+        xstart=x;
+        ystart=y;
+
+var rectan = ([[x,y,"yes"]]);//starting coordinate
+var angle=angle*(Math.PI/180);
+//console.log(angle);
+
+rectan.push([x+width*Math.cos(angle),y+width*Math.sin(angle),"yes"]);
+x=x+width*Math.cos(angle)
+y=y+width*Math.sin(angle)
+//console.log(x,y);
+
+rectan.push([x+height*Math.sin(angle),y-height*Math.cos(angle),"yes"]);
+x=x+height*Math.sin(angle)
+y=y-height*Math.cos(angle)
+//console.log(x,y);
+
+rectan.push([x-width*Math.cos(angle),y-width*Math.sin(angle),"yes"]);
+x=x-width*Math.cos(angle)
+y=y-width*Math.sin(angle)
+//console.log(x,y);
+
+//close the rectangle
+rectan.push([xstart,ystart,"yes"]);
+
+//console.log(rectan);
+
+//populate the text paragraph box for autocad
+var Roll = "pline "
+for (var i = rectan.length - 1; i >= 0; i--) {
+  Roll=Roll.concat((rectan[i][0]) +","+ (rectan[i][1]) + " ")
+};
+Roll=Roll.concat("c ")
+//jquery fill the text box with variable.
+$("#belting").append(Roll);
+
+//stage1---------------------------------------------------------    
+ctx.restore();
+ctx.beginPath();
+for (var i = rectan.length - 1; i >= 0; i--) {
+//console.log(rectan[i])
+if (rectan[i][2]=="yes") {
+// console.log(rectan)
+
+ctx.lineTo(rectan[i][0],rectan[i][1]);
+};
+
+
+};
+ctx.fillStyle = '#BFC8D1';
+ctx.fill();
+ctx.lineWidth = 5;
+ctx.stroke();
+ctx.scale(-1, -1);
+
+
+ctx.font = '50pt Calibri';
+ctx.fillStyle = '#BFC8D1';
+ctx.fillText('', 340, 560);
+ctx.font = '20pt Calibri';
+
+ctx.scale(-1, -1);
+//stage1--------------------------------------------------------- 
+
+}
+//1 - roll idler
+//***************************************************************************************
+//***************************************************************************************
+//***************************************************************************************
+//***************************************************************************************
+//***************************************************************************************
+
+if (numberofrolls==1) {
+
+//Idler---------------------------------------------------------    
+drawrectangle(0-rollwidth/2,
+  0,
+  rolldiameter,
+  rollwidth,
+  0);
+
+//Idler---------------------------------------------------------    
+
+//Shaft---------------------------------------------------------    
+Totalsshaftlength=guagelength+flatlength+20
+extension=(Totalsshaftlength-rollwidth)/2
+
+y=-rolldiameter/2+shaftseries/2;
+//console.log(Totalsshaftlength)
+ 
+//left
+drawrectangle(rollwidth/2,
+  y,
+  shaftseries,
+  extension,
+  0);
+
+//left
+drawrectangle(-rollwidth/2-extension,
+  y,
+  shaftseries,
+  extension,
+  0);
+
+//right flats
+drawrectangle(guagelength/2-flatlength/2,
+  y,
+  shaftseries,
+  flatlength,
+  0);
+
+//left flats
+drawrectangle(-guagelength/2-flatlength/2,
+  y,
+  shaftseries,
+  flatlength,
+  0);
+
+//Shaft---------------------------------------------------------    
+
+
+
+
+
+
+//material---------------------------------------------------------    
+//first check if there is material on the belt.
+if (ismaterial=="yes") {
+material = drawmaterial1roll(0,0,rolldiameter,rollwidth,troughangle,rolloverlap,radiussetback,beltthickness,beltwidth,freeboard,surcharge)
+
+ctx.restore();
+ctx.beginPath();
+for (var i = material.length - 1; i >= 0; i--) {
+ ctx.lineTo(material[i][0],material[i][1]);
+};
+
+ctx.lineWidth = 3;
+ctx.stroke();
+
+//area calculation
+h=(beltwidth/2-freeboard)*2
+tempvar=h/Math.cos(surcharge)/2
+tempvar=tempvar/Math.tan(surcharge)
+console.log(h,surcharge*180/Math.PI,tempvar)
+l=(beltwidth/2-freeboard)*Math.sin(surcharge)
+area=(h*l*.5/1000/1000).toFixed(4)
+$("#Area").val(area);
+
+} else{};
+//material--------------------------------------------------------- 
+
+
+//belt---------------------------------------------------------    
+//first check if there is material on the belt.
+if (ismaterial=="yes") {
+material = drawbelt2roll(0,0,rolldiameter,rollwidth,troughangle,rolloverlap,radiussetback,beltthickness,beltwidth,numberofrolls,Tracking)
+} else{};
+//belt--------------------------------------------------------- 
+
+
+} else{};
+//1 - roll idler
+//***************************************************************************************
+//***************************************************************************************
+//***************************************************************************************
+//***************************************************************************************
+//***************************************************************************************
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//2 - roll idler
+//***************************************************************************************
+//***************************************************************************************
+//***************************************************************************************
+//***************************************************************************************
+//***************************************************************************************
+
+
+//rolls---------------------------------------------------------   
+if (numberofrolls==2) {
+
+//left
+drawrectangle(0-rolloverlap*Math.cos(troughangle/180*Math.PI),
+  0-rolloverlap*Math.sin(troughangle/180*Math.PI),
+  rolldiameter,
+  rollwidth,
+  troughangle);
+
+//right
+drawrectangle(0+rolloverlap*Math.cos(troughangle/180*Math.PI),
+  0-rolloverlap*Math.sin(troughangle/180*Math.PI),
+  rolldiameter,
+  -rollwidth,
+  360-troughangle);
+
+
+//rolls---------------------------------------------------------   
+
+
+//Shaft---------------------------------------------------------    
+Totalsshaftlength=guagelength+flatlength+20
+extension=(Totalsshaftlength-rollwidth)/2
+
+newx=0+rolloverlap*Math.cos(troughangle/180*Math.PI)-(rolldiameter/2-shaftseries/2)*Math.sin(troughangle/180*Math.PI)
+newy=0-rolloverlap*Math.sin(troughangle/180*Math.PI)-(rolldiameter/2-shaftseries/2)*Math.cos(troughangle/180*Math.PI)
+
+newx1=0-rolloverlap*Math.cos(troughangle/180*Math.PI)+(rolldiameter/2-shaftseries/2)*Math.sin(troughangle/180*Math.PI)
+newy1=0-rolloverlap*Math.sin(troughangle/180*Math.PI)-(rolldiameter/2-shaftseries/2)*Math.cos(troughangle/180*Math.PI)
+
+
+newx2=0+rolloverlap*Math.cos(troughangle/180*Math.PI)-(rolldiameter/2-shaftseries/2)*Math.sin(troughangle/180*Math.PI)-(rollwidth)*Math.cos(troughangle/180*Math.PI)
+newy2=0-rolloverlap*Math.sin(troughangle/180*Math.PI)-(rolldiameter/2-shaftseries/2)*Math.cos(troughangle/180*Math.PI)+(rollwidth)*Math.sin(troughangle/180*Math.PI)
+
+newx3=0-rolloverlap*Math.cos(troughangle/180*Math.PI)+(rolldiameter/2-shaftseries/2)*Math.sin(troughangle/180*Math.PI)+(rollwidth)*Math.cos(troughangle/180*Math.PI)
+newy3=0-rolloverlap*Math.sin(troughangle/180*Math.PI)-(rolldiameter/2-shaftseries/2)*Math.cos(troughangle/180*Math.PI)+(rollwidth)*Math.sin(troughangle/180*Math.PI)
+
+
+y=-rolldiameter/2+shaftseries/2;
+ 
+//left
+drawrectangle(newx,
+  newy,
+  shaftseries,
+  extension,
+  360-troughangle);
+
+//left
+drawrectangle(newx1,
+  newy1,
+  shaftseries,
+  -extension,
+  troughangle);
+
+//left
+drawrectangle(newx2,
+  newy2,
+  shaftseries,
+  -extension,
+  360-troughangle);
+
+//left
+drawrectangle(newx3,
+  newy3,
+  shaftseries,
+  extension,
+  troughangle);
+
+//Shaft---------------------------------------------------------    
+
+//flats---------------------------------------------------------
+
+//special varibale for offset
+Totalsshaftlength=guagelength+flatlength+20
+spvar1=(Totalsshaftlength-20-2*flatlength-rollwidth)/2
+//console.log(spvar1)
+
+
+flatnewx=0+(rolloverlap+spvar1)*Math.cos(troughangle/180*Math.PI)-(rolldiameter/2-shaftseries/2)*Math.sin(troughangle/180*Math.PI)
+flatnewy=0-(rolloverlap+spvar1)*Math.sin(troughangle/180*Math.PI)-(rolldiameter/2-shaftseries/2)*Math.cos(troughangle/180*Math.PI)
+
+flatnewx1=0-(rolloverlap+spvar1)*Math.cos(troughangle/180*Math.PI)+(rolldiameter/2-shaftseries/2)*Math.sin(troughangle/180*Math.PI)
+flatnewy1=0-(rolloverlap+spvar1)*Math.sin(troughangle/180*Math.PI)-(rolldiameter/2-shaftseries/2)*Math.cos(troughangle/180*Math.PI)
+
+
+flatnewx2=0+(rolloverlap-spvar1)*Math.cos(troughangle/180*Math.PI)-(rolldiameter/2-shaftseries/2)*Math.sin(troughangle/180*Math.PI)-(rollwidth)*Math.cos(troughangle/180*Math.PI)
+flatnewy2=0-(rolloverlap-spvar1)*Math.sin(troughangle/180*Math.PI)-(rolldiameter/2-shaftseries/2)*Math.cos(troughangle/180*Math.PI)+(rollwidth)*Math.sin(troughangle/180*Math.PI)
+
+flatnewx3=0-(rolloverlap-spvar1)*Math.cos(troughangle/180*Math.PI)+(rolldiameter/2-shaftseries/2)*Math.sin(troughangle/180*Math.PI)+(rollwidth)*Math.cos(troughangle/180*Math.PI)
+flatnewy3=0-(rolloverlap-spvar1)*Math.sin(troughangle/180*Math.PI)-(rolldiameter/2-shaftseries/2)*Math.cos(troughangle/180*Math.PI)+(rollwidth)*Math.sin(troughangle/180*Math.PI)
+
+
+//left
+drawrectangle(flatnewx,
+  flatnewy,
+  shaftseries,
+  flatlength,
+  360-troughangle);
+
+//left
+drawrectangle(flatnewx1,
+  flatnewy1,
+  shaftseries,
+  -flatlength,
+  troughangle);
+
+//left
+drawrectangle(flatnewx2,
+  flatnewy2,
+  shaftseries,
+  -flatlength,
+  360-troughangle);
+
+//left
+drawrectangle(flatnewx3,
+  flatnewy3,
+  shaftseries,
+  flatlength,
+  troughangle);
+
+//flats---------------------------------------------------------
+
+//belt---------------------------------------------------------    
+//first check if there is material on the belt.
+if (ismaterial=="yes") {
+actualbeltline = drawbelt2roll(0,0,rolldiameter,rollwidth,troughangle,rolloverlap,radiussetback,beltthickness,beltwidth,numberofrolls,Tracking)
+} else{};
+
+//belt--------------------------------------------------------- 
+
+
+//material---------------------------------------------------------    
+//first check if there is material on the belt.
+if (ismaterial=="yes") {
+var material = ([[]]);//starting coordinate
+
+//material matrix
+material.push([actualbeltline[4][0],actualbeltline[4][1]]);
+
+
+
+//material to CAD
+
+//Material to Canvas
+  ctx.beginPath();
+  ctx.moveTo(
+    material[4][0], 
+    material[4][1]);
+  ctx.lineTo(x, y);
+  ctx.lineWidth = 5;
+  ctx.strokeStyle = '#ff0000';
+  ctx.stroke();
+
+
+
+// Area Calucaltion
+
+area=0
+$("#Area").val(area);
+
+} else{};
+//material--------------------------------------------------------- 
+
+console.log(material)
+
+
+} else{};
+
+
+//2 - roll idler
+//***************************************************************************************
+//***************************************************************************************
+//***************************************************************************************
+//***************************************************************************************
+//***************************************************************************************
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//3 - roll idler
+//***************************************************************************************
+//***************************************************************************************
+//***************************************************************************************
+//***************************************************************************************
+//***************************************************************************************
+
+if (numberofrolls==3) {
+
+//what is the offset roll gap x and y
+
+var firstoffsetx= rolloverlap+rolloverlap*Math.cos(troughangle*(Math.PI/180))
+var firstoffsety= -rolloverlap*Math.sin(troughangle*(Math.PI/180))
+offset1=rollwidth/2-rolloverlap
+offset2=(rollwidth-rolloverlap*2) * Math.cos(troughangle*(Math.PI/180))
+offset3=(rollwidth-rolloverlap*2) * Math.sin(troughangle*(Math.PI/180))
+offset4=(rolloverlap) * Math.sin(troughangle*2*(Math.PI/180))
+offset5=(rolloverlap) * Math.cos(troughangle*2*(Math.PI/180))
+
+//rolls
+drawrectangle(-rollwidth/2,0,rolldiameter,rollwidth,0);
+
+//left
+drawrectangle(rollwidth/2-firstoffsetx,
+  +firstoffsety,
+  rolldiameter,
+  rollwidth,
+  troughangle);
+
+
+
+//right
+drawrectangle(-rollwidth/2+firstoffsetx,
+  +firstoffsety,
+  rolldiameter,
+  -rollwidth,
+  360-troughangle);
+
+
+//Shaft---------------------------------------------------------    
+Totalsshaftlength=guagelength+flatlength+20
+extension=(Totalsshaftlength-rollwidth)/2
+
+y=-rolldiameter/2+shaftseries/2;
+
+newx=-rollwidth/2+firstoffsetx-(rolldiameter/2-shaftseries/2)*Math.sin(troughangle/180*Math.PI)
+newy=firstoffsety-(rolldiameter/2-shaftseries/2)*Math.cos(troughangle/180*Math.PI)
+
+newx1=rollwidth/2-firstoffsetx+(rolldiameter/2-shaftseries/2)*Math.sin(troughangle/180*Math.PI)
+newy1=firstoffsety-(rolldiameter/2-shaftseries/2)*Math.cos(troughangle/180*Math.PI)
+
+
+newx2=-rollwidth/2+firstoffsetx-(rolldiameter/2-shaftseries/2)*Math.sin(troughangle/180*Math.PI)-(rollwidth)*Math.cos(troughangle/180*Math.PI)
+newy2=firstoffsety-(rolldiameter/2-shaftseries/2)*Math.cos(troughangle/180*Math.PI)+(rollwidth)*Math.sin(troughangle/180*Math.PI)
+
+newx3=rollwidth/2-firstoffsetx+(rolldiameter/2-shaftseries/2)*Math.sin(troughangle/180*Math.PI)+(rollwidth)*Math.cos(troughangle/180*Math.PI)
+newy3=firstoffsety-(rolldiameter/2-shaftseries/2)*Math.cos(troughangle/180*Math.PI)+(rollwidth)*Math.sin(troughangle/180*Math.PI)
+
+
+
+
+ 
+//left
+drawrectangle(newx,
+  newy,
+  shaftseries,
+  extension,
+  360-troughangle);
+
+//left
+drawrectangle(newx1,
+  newy1,
+  shaftseries,
+  -extension,
+  troughangle);
+
+//left
+drawrectangle(newx2,
+  newy2,
+  shaftseries,
+  -extension,
+  360-troughangle);
+
+//left
+drawrectangle(newx3,
+  newy3,
+  shaftseries,
+  extension,
+  troughangle);
+
+//left
+drawrectangle(rollwidth/2,
+  -rolldiameter/2-shaftseries/2,
+  -shaftseries,
+  extension,
+  0);
+
+//left
+drawrectangle(-rollwidth/2,
+  -rolldiameter/2-shaftseries/2,
+  -shaftseries,
+  -extension,
+  0);
+
+
+//Shaft---------------------------------------------------------    
+
+//flats---------------------------------------------------------
+
+//special varibale for offset
+Totalsshaftlength=guagelength+flatlength+20
+spvar1=(Totalsshaftlength-20-2*flatlength-rollwidth)/2
+//console.log(spvar1)
+
+
+flatnewx=-rollwidth/2+firstoffsetx+(spvar1)*Math.cos(troughangle/180*Math.PI)-(rolldiameter/2-shaftseries/2)*Math.sin(troughangle/180*Math.PI)
+flatnewy=firstoffsety-(spvar1)*Math.sin(troughangle/180*Math.PI)-(rolldiameter/2-shaftseries/2)*Math.cos(troughangle/180*Math.PI)
+
+flatnewx1=rollwidth/2-firstoffsetx-(spvar1)*Math.cos(troughangle/180*Math.PI)+(rolldiameter/2-shaftseries/2)*Math.sin(troughangle/180*Math.PI)
+flatnewy1=firstoffsety-(spvar1)*Math.sin(troughangle/180*Math.PI)-(rolldiameter/2-shaftseries/2)*Math.cos(troughangle/180*Math.PI)
+
+
+flatnewx2=-rollwidth/2+firstoffsetx-(spvar1)*Math.cos(troughangle/180*Math.PI)-(rolldiameter/2-shaftseries/2)*Math.sin(troughangle/180*Math.PI)-(rollwidth)*Math.cos(troughangle/180*Math.PI)
+flatnewy2=firstoffsety+(spvar1)*Math.sin(troughangle/180*Math.PI)-(rolldiameter/2-shaftseries/2)*Math.cos(troughangle/180*Math.PI)+(rollwidth)*Math.sin(troughangle/180*Math.PI)
+
+flatnewx3=rollwidth/2-firstoffsetx+(spvar1)*Math.cos(troughangle/180*Math.PI)+(rolldiameter/2-shaftseries/2)*Math.sin(troughangle/180*Math.PI)+(rollwidth)*Math.cos(troughangle/180*Math.PI)
+flatnewy3=firstoffsety+(spvar1)*Math.sin(troughangle/180*Math.PI)-(rolldiameter/2-shaftseries/2)*Math.cos(troughangle/180*Math.PI)+(rollwidth)*Math.sin(troughangle/180*Math.PI)
+
+
+//left
+drawrectangle(flatnewx,
+  flatnewy,
+  shaftseries,
+  flatlength,
+  360-troughangle);
+
+//left
+drawrectangle(flatnewx1,
+  flatnewy1,
+  shaftseries,
+  -flatlength,
+  troughangle);
+
+//left
+drawrectangle(flatnewx2,
+  flatnewy2,
+  shaftseries,
+  -flatlength,
+  360-troughangle);
+
+//left
+drawrectangle(flatnewx3,
+  flatnewy3,
+  shaftseries,
+  flatlength,
+  troughangle);
+
+//left
+drawrectangle(rollwidth/2+spvar1,
+  -rolldiameter/2-shaftseries/2,
+  -shaftseries,
+  flatlength,
+  0);
+
+//left
+drawrectangle(-rollwidth/2-spvar1,
+  -rolldiameter/2-shaftseries/2,
+  -shaftseries,
+  -flatlength,
+  0);
+
+
+
+
+
+//flats---------------------------------------------------------
+
+//belt---------------------------------------------------------    
+//first check if there is material on the belt.
+if (ismaterial=="yes") {
+material = drawbelt2roll(0,0,rolldiameter,rollwidth,troughangle,rolloverlap,radiussetback,beltthickness,beltwidth,numberofrolls,Tracking)
+} else{};
+//belt--------------------------------------------------------- 
+
+
+} else{};
+
+
+//3 - roll idler
+//***************************************************************************************
+//***************************************************************************************
+//***************************************************************************************
+//***************************************************************************************
+//***************************************************************************************
+
+
+
+
+
+
+
+
+
+
+
+//5 - roll idler
+//***************************************************************************************
+//***************************************************************************************
+//***************************************************************************************
+//***************************************************************************************
+//***************************************************************************************
+
+if (numberofrolls==5) {
+troughangle=troughangle/2
+//what is the offset roll gap x and y
+
+var firstoffsetx= rolloverlap+rolloverlap*Math.cos(troughangle*(Math.PI/180))
+var firstoffsety= -rolloverlap*Math.sin(troughangle*(Math.PI/180))
+offset1=rollwidth/2-rolloverlap
+offset2=(rollwidth-rolloverlap*2) * Math.cos(troughangle*(Math.PI/180))
+offset3=(rollwidth-rolloverlap*2) * Math.sin(troughangle*(Math.PI/180))
+offset4=(rolloverlap) * Math.sin(troughangle*2*(Math.PI/180))
+offset5=(rolloverlap) * Math.cos(troughangle*2*(Math.PI/180))
+
+//rolls
+drawrectangle(-rollwidth/2,0,rolldiameter,rollwidth,0);
+
+//left
+drawrectangle(rollwidth/2-firstoffsetx,
+  +firstoffsety,
+  rolldiameter,
+  rollwidth,
+  troughangle);
+
+drawrectangle(offset1+offset2-offset5,
+  offset3-offset4,
+  rolldiameter,
+  rollwidth,
+  troughangle*2);
+
+//right
+drawrectangle(-rollwidth/2+firstoffsetx,
+  +firstoffsety,
+  rolldiameter,
+  -rollwidth,
+  360-troughangle);
+
+drawrectangle(-offset1-offset2+offset5,
+  offset3-offset4,
+  rolldiameter,
+  -rollwidth,
+  360-troughangle*2);
+
+
+
+//Shaft---------------------------------------------------------    
+Totalsshaftlength=guagelength+flatlength+20
+extension=(Totalsshaftlength-rollwidth)/2
+
+y=-rolldiameter/2+shaftseries/2;
+
+newx=-rollwidth/2+firstoffsetx-(rolldiameter/2-shaftseries/2)*Math.sin(troughangle/180*Math.PI)
+newy=firstoffsety-(rolldiameter/2-shaftseries/2)*Math.cos(troughangle/180*Math.PI)
+
+newx1=rollwidth/2-firstoffsetx+(rolldiameter/2-shaftseries/2)*Math.sin(troughangle/180*Math.PI)
+newy1=firstoffsety-(rolldiameter/2-shaftseries/2)*Math.cos(troughangle/180*Math.PI)
+
+
+newx2=-rollwidth/2+firstoffsetx-(rolldiameter/2-shaftseries/2)*Math.sin(troughangle/180*Math.PI)-(rollwidth)*Math.cos(troughangle/180*Math.PI)
+newy2=firstoffsety-(rolldiameter/2-shaftseries/2)*Math.cos(troughangle/180*Math.PI)+(rollwidth)*Math.sin(troughangle/180*Math.PI)
+
+newx3=rollwidth/2-firstoffsetx+(rolldiameter/2-shaftseries/2)*Math.sin(troughangle/180*Math.PI)+(rollwidth)*Math.cos(troughangle/180*Math.PI)
+newy3=firstoffsety-(rolldiameter/2-shaftseries/2)*Math.cos(troughangle/180*Math.PI)+(rollwidth)*Math.sin(troughangle/180*Math.PI)
+
+//step2
+
+troughanglenew=troughangle*2
+
+newx5=-offset1-offset2+offset5-(rolldiameter/2-shaftseries/2)*Math.sin(troughanglenew/180*Math.PI)
+newy5=offset3-offset4-(rolldiameter/2-shaftseries/2)*Math.cos(troughanglenew/180*Math.PI)
+
+newx6=offset1+offset2-offset5+(rolldiameter/2-shaftseries/2)*Math.sin(troughanglenew/180*Math.PI)
+newy6=offset3-offset4-(rolldiameter/2-shaftseries/2)*Math.cos(troughanglenew/180*Math.PI)
+
+newx7=-offset1-offset2+offset5-(rolldiameter/2-shaftseries/2)*Math.sin(troughanglenew/180*Math.PI)-(rollwidth)*Math.cos(troughanglenew/180*Math.PI)
+newy7=offset3-offset4-(rolldiameter/2-shaftseries/2)*Math.cos(troughanglenew/180*Math.PI)+(rollwidth)*Math.sin(troughanglenew/180*Math.PI)
+
+newx8=offset1+offset2-offset5+(rolldiameter/2-shaftseries/2)*Math.sin(troughanglenew/180*Math.PI)+(rollwidth)*Math.cos(troughanglenew/180*Math.PI)
+newy8=offset3-offset4-(rolldiameter/2-shaftseries/2)*Math.cos(troughanglenew/180*Math.PI)+(rollwidth)*Math.sin(troughanglenew/180*Math.PI)
+
+
+
+//left
+drawrectangle(newx,
+  newy,
+  shaftseries,
+  extension,
+  360-troughangle);
+
+//left
+drawrectangle(newx1,
+  newy1,
+  shaftseries,
+  -extension,
+  troughangle);
+
+
+//last idlers
+
+drawrectangle(newx5,
+  newy5,
+  shaftseries,
+  extension,
+  360-troughangle*2);
+
+drawrectangle(newx6,
+  newy6,
+  shaftseries,
+  -extension,
+  troughangle*2);
+
+drawrectangle(newx7,
+  newy7,
+  shaftseries,
+  -extension,
+  360-troughangle*2);
+
+drawrectangle(newx8,
+  newy8,
+  shaftseries,
+  extension,
+  troughangle*2);
+
+//last idlers
+
+
+//left
+drawrectangle(newx2,
+  newy2,
+  shaftseries,
+  -extension,
+  360-troughangle);
+
+//left
+drawrectangle(newx3,
+  newy3,
+  shaftseries,
+  extension,
+  troughangle);
+
+//left
+drawrectangle(rollwidth/2,
+  -rolldiameter/2-shaftseries/2,
+  -shaftseries,
+  extension,
+  0);
+
+//left
+drawrectangle(-rollwidth/2,
+  -rolldiameter/2-shaftseries/2,
+  -shaftseries,
+  -extension,
+  0);
+
+
+//Shaft---------------------------------------------------------    
+
+//flats---------------------------------------------------------
+
+//special varibale for offset
+Totalsshaftlength=guagelength+flatlength+20
+spvar1=(Totalsshaftlength-20-2*flatlength-rollwidth)/2
+
+
+
+flatnewx=-rollwidth/2+firstoffsetx+(spvar1)*Math.cos(troughangle/180*Math.PI)-(rolldiameter/2-shaftseries/2)*Math.sin(troughangle/180*Math.PI)
+flatnewy=firstoffsety-(spvar1)*Math.sin(troughangle/180*Math.PI)-(rolldiameter/2-shaftseries/2)*Math.cos(troughangle/180*Math.PI)
+
+flatnewx1=rollwidth/2-firstoffsetx-(spvar1)*Math.cos(troughangle/180*Math.PI)+(rolldiameter/2-shaftseries/2)*Math.sin(troughangle/180*Math.PI)
+flatnewy1=firstoffsety-(spvar1)*Math.sin(troughangle/180*Math.PI)-(rolldiameter/2-shaftseries/2)*Math.cos(troughangle/180*Math.PI)
+
+
+flatnewx2=-rollwidth/2+firstoffsetx-(spvar1)*Math.cos(troughangle/180*Math.PI)-(rolldiameter/2-shaftseries/2)*Math.sin(troughangle/180*Math.PI)-(rollwidth)*Math.cos(troughangle/180*Math.PI)
+flatnewy2=firstoffsety+(spvar1)*Math.sin(troughangle/180*Math.PI)-(rolldiameter/2-shaftseries/2)*Math.cos(troughangle/180*Math.PI)+(rollwidth)*Math.sin(troughangle/180*Math.PI)
+
+flatnewx3=rollwidth/2-firstoffsetx+(spvar1)*Math.cos(troughangle/180*Math.PI)+(rolldiameter/2-shaftseries/2)*Math.sin(troughangle/180*Math.PI)+(rollwidth)*Math.cos(troughangle/180*Math.PI)
+flatnewy3=firstoffsety+(spvar1)*Math.sin(troughangle/180*Math.PI)-(rolldiameter/2-shaftseries/2)*Math.cos(troughangle/180*Math.PI)+(rollwidth)*Math.sin(troughangle/180*Math.PI)
+
+
+
+//second roll set
+
+flatnewx4=newx5
++(spvar1)*Math.cos(troughanglenew/180*Math.PI)
+
+flatnewy4=newy5
+-(spvar1)*Math.sin(troughanglenew/180*Math.PI)
+
+
+flatnewx5=newx6
+-(spvar1)*Math.cos(troughanglenew/180*Math.PI)
+
+flatnewy5=newy6
+-(spvar1)*Math.sin(troughanglenew/180*Math.PI)
+
+
+flatnewx6=newx7
+-(spvar1)*Math.cos(troughanglenew/180*Math.PI)
+
+
+flatnewy6=newy7
++(spvar1)*Math.sin(troughanglenew/180*Math.PI)
+
+
+
+flatnewx7=newx8
++(spvar1)*Math.cos(troughanglenew/180*Math.PI)
+
+
+flatnewy7=newy8
++(spvar1)*Math.sin(troughanglenew/180*Math.PI)
+
+//left
+drawrectangle(flatnewx,
+  flatnewy,
+  shaftseries,
+  flatlength,
+  360-troughangle);
+
+//left
+drawrectangle(flatnewx1,
+  flatnewy1,
+  shaftseries,
+  -flatlength,
+  troughangle);
+
+//left
+drawrectangle(flatnewx2,
+  flatnewy2,
+  shaftseries,
+  -flatlength,
+  360-troughangle);
+
+//left
+drawrectangle(flatnewx3,
+  flatnewy3,
+  shaftseries,
+  flatlength,
+  troughangle);
+
+//left
+drawrectangle(rollwidth/2+spvar1,
+  -rolldiameter/2-shaftseries/2,
+  -shaftseries,
+  flatlength,
+  0);
+
+//left
+drawrectangle(-rollwidth/2-spvar1,
+  -rolldiameter/2-shaftseries/2,
+  -shaftseries,
+  -flatlength,
+  0);
+
+
+//second set
+drawrectangle(flatnewx4,
+  flatnewy4,
+  shaftseries,
+  flatlength,
+  360-troughangle*2);
+
+//left
+drawrectangle(flatnewx5,
+  flatnewy5,
+  shaftseries,
+  -flatlength,
+  troughangle*2);
+
+//left
+drawrectangle(flatnewx6,
+  flatnewy6,
+  shaftseries,
+  -flatlength,
+  360-troughangle*2);
+
+//left
+drawrectangle(flatnewx7,
+  flatnewy7,
+  shaftseries,
+  flatlength,
+  troughangle*2);
+
+
+//second set
+
+
+//flats---------------------------------------------------------
+
+
+
+//stage1---------------------------------------------------------    
+ctx.restore();
+ctx.beginPath();
+for (var i = belting.length - 1; i >= 0; i--) {
+ ctx.lineTo(belting[i][0],belting[i][1]);
+};
+ctx.fillStyle = '#778899';
+      ctx.fill();
+ctx.lineWidth = 5;
+ctx.stroke();
+//stage1--------------------------------------------------------- 
+
+//belt---------------------------------------------------------    
+//first check if there is material on the belt.
+if (ismaterial=="yes") {
+material = drawbelt2roll(0,0,rolldiameter,rollwidth,troughangle,rolloverlap,radiussetback,beltthickness,beltwidth,numberofrolls,Tracking)
+} else{};
+//belt--------------------------------------------------------- 
+
+} else{};
+
+
+//5 - roll idler
+//***************************************************************************************
+//***************************************************************************************
+//***************************************************************************************
+//***************************************************************************************
+//***************************************************************************************
+
+
+
+
+
+  }
+}
+
+
+
+
+
+
+$(document).ready(function () {
+
+   var str1 = $("#angle").val();
+   var str2 = $("#rolloverlap").val();
+   var str3 = $("#diameter").val();
+   var str4 = $("#rollwidth").val();
+   var str5 = $("#numberofrolls1").val();
+   var str6 = $("#freeboard").val();
+   var str7 = $("#surcharge").val();
+   var str8 = $("#thickness").val();
+   var str9 = $("#beltwidth").val();
+   var str10 = $("input[name=materialloading]:checked").val();
+   var str11 = $("#guagelength").val();
+   var str12 = $("#flatlength").val();
+   var str13 = $("#shaftseries").val();
+   var str14 = $("#Radiussetback").val();
+   var str15 = $("#Tracking").val();
+   var str16 = $("#scale").val();
+   var str17 = $("#leftright").val();
+   var str18 = $("#updown").val();
+   troughangle=parseFloat(str1);
+   troughanglerads= Math.PI*troughangle/180;
+   rolloverlap=parseFloat(str2);
+   rolldiameter=parseFloat(str3);
+   rollwidth=parseFloat(str4);
+   numberofrolls=parseFloat(str5);
+   freeboard=parseFloat(str6);
+   surcharge=parseFloat(str7);
+   surcharge=Math.PI*(str7)/180;
+   beltthickness=parseFloat(str8);
+   beltwidth=parseFloat(str9);
+   ismaterial=str10;   
+   guagelength=parseFloat(str11); 
+   flatlength=parseFloat(str12); 
+   shaftseries=parseFloat(str13); 
+   radiussetback=parseFloat(str14); 
+   Tracking=parseFloat(str15); 
+   scale = parseFloat(str16); 
+   leftright = parseFloat(str17); 
+   updown = parseFloat(str18); 
+   $("#beltwidthval").val(beltwidth);
+
+
+$("#btnExport").click(function (e) {
+function downloadInnerHtml(filename, elId, mimeType) {
+    var elHtml =  $("#belting").val();
+    var link = document.createElement('a');
+    mimeType = mimeType || 'text/plain';
+
+    link.setAttribute('download', filename);
+    link.setAttribute('href', 'data:' + mimeType + ';charset=utf-8,' + encodeURIComponent(elHtml));
+    link.click(); 
+}
+
+var fileName =  'Idler.scr'; // You can use the .txt extension if you want
+downloadInnerHtml(fileName, 'main','text/html');
+});
+
+  $("input").change(function(){
+     $("#belting").empty();
+   var str1 = $("#angle").val();
+   var str2 = $("#rolloverlap").val();
+   var str3 = $("#diameter").val();
+   var str4 = $("#rollwidth").val();
+   var str5 = $("#numberofrolls1").val();
+   var str6 = $("#freeboard").val();
+   var str7 = $("#surcharge").val();
+   var str8 = $("#thickness").val();
+   var str9 = $("#beltwidth").val();
+   var str10 = $("input[name=materialloading]:checked").val();
+   var str11 = $("#guagelength").val();
+   var str12 = $("#flatlength").val();
+   var str13 = $("#shaftseries").val();
+   var str14 = $("#Radiussetback").val();
+   var str15 = $("#Tracking").val();
+   var str16 = $("#scale").val();
+   var str17 = $("#leftright").val();
+   var str18 = $("#updown").val();
+   troughangle=parseFloat(str1);
+   troughanglerads= Math.PI*troughangle/180;
+   rolloverlap=parseFloat(str2);
+   rolldiameter=parseFloat(str3);
+   rollwidth=parseFloat(str4);
+   numberofrolls=parseFloat(str5);
+   freeboard=parseFloat(str6);
+   surcharge=parseFloat(str7);
+   surcharge=Math.PI*(str7)/180;
+   beltthickness=parseFloat(str8);
+   beltwidth=parseFloat(str9);
+   ismaterial=str10;   
+   guagelength=parseFloat(str11); 
+   flatlength=parseFloat(str12); 
+   shaftseries=parseFloat(str13); 
+   radiussetback=parseFloat(str14); 
+   Tracking=parseFloat(str15); 
+   scale = parseFloat(str16); 
+   leftright = parseFloat(str17); 
+   updown = parseFloat(str18); 
+      $("#beltwidthval").val(beltwidth);
+   canvas.width = canvas.width;
+   draw();
+
+ }
+ );
+  $("select").change(function(){
+     $("#belting").empty();
+   var str1 = $("#angle").val();
+   var str2 = $("#rolloverlap").val();
+   var str3 = $("#diameter").val();
+   var str4 = $("#rollwidth").val();
+   var str5 = $("#numberofrolls1").val();
+   var str6 = $("#freeboard").val();
+   var str7 = $("#surcharge").val();
+   var str8 = $("#thickness").val();
+   var str9 = $("#beltwidth").val();
+   var str10 = $("input[name=materialloading]:checked").val();
+   var str11 = $("#guagelength").val();
+   var str12 = $("#flatlength").val();
+   var str13 = $("#shaftseries").val();
+   var str14 = $("#Radiussetback").val();
+   var str15 = $("#Tracking").val();
+   var str16 = $("#scale").val();
+   var str17 = $("#leftright").val();
+   var str18 = $("#updown").val();
+   troughangle=parseFloat(str1);
+   troughanglerads= Math.PI*troughangle/180;
+   rolloverlap=parseFloat(str2);
+   rolldiameter=parseFloat(str3);
+   rollwidth=parseFloat(str4);
+   numberofrolls=parseFloat(str5);
+   freeboard=parseFloat(str6);
+   surcharge=parseFloat(str7);
+   surcharge=Math.PI*(str7)/180;
+   beltthickness=parseFloat(str8);
+   beltwidth=parseFloat(str9);
+   ismaterial=str10;   
+   guagelength=parseFloat(str11); 
+   flatlength=parseFloat(str12); 
+   shaftseries=parseFloat(str13); 
+   radiussetback=parseFloat(str14); 
+   Tracking=parseFloat(str15); 
+   scale = parseFloat(str16); 
+   leftright = parseFloat(str17); 
+   updown = parseFloat(str18); 
+   canvas.width = canvas.width;
+   $("#beltwidthval").val(beltwidth);
+   draw();
+
+ }
+
+
+
+ );
+});
+
+
+
+</script>
+</head>
+<body onload="draw();">
+ <canvas id="canvas" width="800" height="500" style="border:1px solid #000000;"></canvas>
+ <div>
+ <p>
+  <input  type="range"  value=".5" min="0" max="20" id="scale" step=".1" >scale</input>
+  <input  type="range"  value="70" min="0" max="1000" id="leftright" step=".1" >left right</input>
+  <input  type="range"  value="50" min="0" max="900" id="updown" step=".1" >up down</input>
+
+
+ </p>
+
+ <p>
+  <input value="75" type="number" id="Radiussetback">Radius Setback</input>
+  <input value="0" type="number" id="Tracking">Tracking</input>
+
+ </p>
+ <p>
+ <input value="10" min="0" max="180" type="range" id="angle" step="1">Trough Angle</input>
+
+ <input value="475" type="number" id="rollwidth">Roll Width</input>
+  </p>
+
+  <p>
+ <input value="-40" type="number" id="rolloverlap">Roll Overlap</input>
+ <input value="25" type="number" id="shaftseries">Shaft Series</input>
+
+ </p>
+   <p>
+ <input value="485" type="number" id="guagelength">Guage Length</input>
+
+
+ <input value="14" type="number" id="flatlength">Flat Length</input>
+
+  </p>
+
+   <p>
+ <input type="range"  value="900" min="0" max="1000"  id="beltwidth" step="1">Belt Width</input>
+ <input id="beltwidthval" >Belt Width</input>
+</p>
+
+<p>
+
+  <input value="150" type="number" id="freeboard">Freeboard</input>
+ </p>
+
+
+ <p>
+  <input value="22" type="number" id="surcharge">Surcharge Angle</input>
+
+  <input value="22" type="number" id="thickness">Belt Thickness</input>
+ </p>
+
+ <p>
+  <input value="22" type="number" id="thickness">Belt Speed</input>
+
+  <input value="22" type="number" id="Area">Cross Sectional Area</input>
+ </p>
+
+<p>
+  <input value="22" type="number" id="Density">Bulk Density</input>
+
+  <input value="22" type="number" id="Capacity">Belt Capacity</input>
+ </p>
+
+
+
+
+
+
+
+<select  id="diameter">
+  <option value="101">101</option>
+  <option value="127" selected="selected">127</option>
+  <option value="152">152</option>
+  <option value="178">178</option>
+  <option value="630">630</option>
+</select>
+
+
+<select  id="numberofrolls1">
+  <option value="1">1</option>
+  <option value="2" selected="selected" >2</option>
+  <option value="3">3</option>
+  <option value="5">5</option>
+</select>
+
+<p>
+<input type="radio" name="materialloading" value="yes" checked="checked">Yes<br>
+<input type="radio" name="materialloading" value="no">No
+</p>
+<textarea name="paragraph_text" cols="50" rows="10" id="belting" style="display"></textarea>
+</div>
+<input type="button" id="btnExport" value=" Export data" />
+<p>Drag "idler.src" file into open AutoCad drawing to plot view.</p>
+<p>Turn off Object Snaps in AutoCad if shape appears incorrect.</p>
+</body>
+</html>

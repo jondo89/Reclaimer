@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2">
+<Document>
+<GroundOverlay>
+<name>RGB_Mosaic_UTM35s.png</name>
+<Icon>
+<href>RGB_Mosaic_UTM35s.png</href>
+</Icon>
+<LatLonBox>
+<north>-28.176338</north>
+<south>-28.5358346</south>
+<east>23.1358657</east>
+<west>22.725929</west>
+</LatLonBox>
+<LookAt>
+<longitude>22.9313657</longitude>
+<latitude>-28.3563297</latitude>
+<heading>0.03</heading>
+<range>88891.78</range>
+</LookAt>
+</GroundOverlay>
+</Document>
+</kml>

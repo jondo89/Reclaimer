@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- ################### -->
+  <!--    Style Sheet      -->
+  <!-- ################### -->
+  <!-- Bootstrap -->
+  <link href="css/bootstrap.css" rel="stylesheet">
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+        <!-- Calendar Style sheet -->
+        <link rel="stylesheet" type="text/css" href="Zabuto Calendar/zabuto_calendar.css">
+        <!-- ////////////////// -->
+        <!--    Style Sheet      -->
+        <!-- ////////////////// -->
+      </head>
+      <body>
+
+
+        <!-- --------------------- -->
+        <!--      NAV BAR          -->
+        <!-- --------------------- -->
+
+        <nav class="navbar navbar-default">
+          <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header" style="padding:25px">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a href="http://www.shiftbulk.com"> <img src="Logo-rev-6.png" style="width:272px;"></a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+              <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown" style="padding-top:28px">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Pick a Date <span class="caret"></span></a>
+                  <ul class="dropdown-menu" role="menu" style="padding:15px">
+                    <div id="my-calendar"></div>
+                  </ul>
+                </li>
+
+
+              </div><!-- /.navbar-collapse -->
+            </div><!-- /.container-fluid -->
+          </nav>
+
+
+
+          <!-- --------------------- -->
+          <!--      NAV BAR          -->
+          <!-- --------------------- -->
+
+
+          <!-- ///////////////// -->
+          <!--    Container      -->
+          <!-- ///////////////// -->
+          <div class="container" style="padding-top:15px" id="loadingArea">
+
+            <div class="row">
+
+              <!-- ///////////////////// -->
+              <!--    Left Side Bar      -->
+              <!-- ///////////////////// -->
+              <div class="col-md-4">
+                <!-- /////////////////////// -->
+                <!--    DATE PICK AREA       -->
+                <!-- /////////////////////// --> 
+
+
+
+                <div class="panel panel-default">
+                <div class="panel-heading">Loading Status</div>
+                  <div class="panel-body">
+
+                    <div class="alert alert-warning alert-dismissible fade in" role="alert">
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                      <strong>Info :</strong> Use the top right "Pick a Date" to view Reclaimer behaviour.
+                    </div>               
+
+
+                    <div class="progress">
+                      <div id="loading" class="progress-bar active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
+                        <span class="sr-only">45% Complete</span>
+                      </div>
+                    </div>
+                    <div id="dateArea"></div>
+                    <div id="pointArea"></div>
+                    <div id="timeArea"></div>
+                  </div>
+                </div>
+
+                <div class="panel panel-default">
+                  <div class="panel-heading">Tag list</div>
+                  <div class="panel-body">
+                    <table class="table table-bordered" id="myStats" style="font-size:9px">
+                      <thead>
+                        <tr>
+                          <th>Plot</th>
+                          <th>Tag Name</th>
+                          <th>Units</th>
+                          <th>Max</th>  
+                          <th>Min</th>  
+                          <th>Null</th>  
+                        </tr>
+                      </thead>
+                      <tbody id="tBody">
+                      </tbody>
+                    </table>   
+                  </div>
+                </div>
+
+              </div>
+
+              <!-- /////////////////// -->
+              <!--    Right Panel      -->
+              <!-- /////////////////// -->  
+              <div class="col-md-8">
+
+
+
+
+
+
+                <!-- ///////////////////// -->
+                <!--    THREE PANEL        -->
+                <!-- ///////////////////// -->
+                <div class="panel panel-default" id="Threejspanel">
+                  <div class="panel-heading">Hs-S5500/7500.47 Reclaimer</div>
+                  <div class="panel-body" id="dailySummary">
+                    <div id="ThreeJS" style="height:250px;width:100%" class="threeJS"></div>
+                    <div style="height:15px"></div>
+                    <div class="alert alert-warning alert-dismissible fade in" role="alert">
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                      <strong>Note :</strong> Use the mouse to pan , zoom and rotate the model.
+                    </div>
+                  </div>
+                </div>
+
+                <!-- /////////////////////// -->
+                <!--    Daily Details        -->
+                <!-- /////////////////////// -->  
+                <div  id="">
+                  <div class="panel panel-default">
+                    <div class="panel-heading">CSV Data</div>
+                    <div class="panel-body">
+
+                      <div role="tabpanel">
+                        <!-- Nav tabs -->
+                        <ul class="nav nav-tabs" role="tablist">
+                          <li role="presentation"><a href="#PlotArea" aria-controls="PlotArea" role="tab" data-toggle="tab" id="PlotAreaClick" >Plot Area</a></li>
+
+                 
+                          <li role="presentation"><a href="#stats" aria-controls="home" role="tab" data-toggle="tab">Tag List</a></li>
+
+
+
+                        </ul>
+                        <!-- Tab panes -->
+                        <div class="tab-content">
+                          <!-- /////////////////////// -->
+                          <!--    GRAPH AREA           -->
+                          <!-- /////////////////////// --> 
+                          <div role="tabpanel" class="tab-pane" id="PlotArea">
+                            <div id="containerChart" style=""></div>
+                            <div class="alert alert-warning" role="alert"><strong>Note :</strong> Move the mouse over the graph to animate the Model of the Reclaimer.</div>
+
+                          </div> 
+
+
+
+
+
+
+                          <!-- /////////////////////// -->
+                          <!--    TAG LIST             -->
+                          <!-- /////////////////////// --> 
+                          <div role="tabpanel" class="tab-pane" id="home">
+                           <table class="table table-bordered" id="myTags">
+                            <thead>
+                              <tr>
+                                <th>Tag Name</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                          </table>
+                        </div>
+
+                        <!-- /////////////////////// -->
+                        <!--    Stats List             -->
+                        <!-- /////////////////////// --> 
+                        <div role="tabpanel" class="tab-pane" id="stats">
+
+
+                        </table>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+
+
+          </div>
+        </div>
+
+
+        <!--container-->
+      </div>
+
+      <!-- ////// -->
+      <!-- Footer -->
+      <!-- ////// -->
+      <div style="background-color: #ea262a;padding:15px 25px 0px 0px;">
+
+
+
+        <div id="copyright" class="col-left">
+          <p style="padding:55px 45px 15px">© 2015 Shiftbulk. All Rights Reserved. </p>    </div>
+
+          <div id="credit" style="text-align:right">
+            <p></p>
+            <p style="text-align:right;padding-bottom: 15px"><img src="http://localhost/wp-content/uploads/2015/02/Logo-rev-6.png"></p>
+            <p style="text-align:right;padding-bottom: 15px">Email us : <a href="mailto:webmaster@shiftbulk.com" target="_top" style="color:white">webmaster@shiftbulk.com</a> or view our <a href="http://localhost/site-map/" target="_top" style="color:white">Site Map</a> 
+            </div>
+
+
+          </div>
+
+
+          <!-- /////////////////// -->
+          <!-- Script Loading Area -->
+          <!-- /////////////////// -->
+
+          <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+          <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+          <!-- Jquery javascript -->    
+          <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+          <!-- Papaparse Javascript -->    
+          <script src="http://cdnjs.cloudflare.com/ajax/libs/PapaParse/4.1.1/papaparse.min.js"></script>
+          <!-- Bootstrap theme Javascript -->
+          <script src="js/bootstrap.min.js"></script>
+          <!-- Highstock Loading Area -->
+          <script src="http://code.highcharts.com/stock/highstock.js"></script>
+          <script src="http://code.highcharts.com/stock/modules/exporting.js"></script>
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/highcharts/4.1.1/highcharts-more.js"></script>
+          <script src="http://code.highcharts.com/modules/drilldown.js"></script>
+
+          <!-- Three.js Loading Area -->
+          <script src="libs/three.js/build/three.js"></script>
+          <script src="libs/other/OrbitControls.js"></script>
+          <script src="js/THREEx.KeyboardState.js"></script>
+          <script src="js/THREEx.FullScreen.js"></script>
+          <script src="js/THREEx.WindowResize.js"></script>
+          <!-- PoTree.js loaders-->
+          <script src="build/js/potree.js"></script>
+
+          <!-- calander Javascript-->
+          <script src="Zabuto Calendar/zabuto_calendar.min.js"></script>
+
+          <!-- Model and Graph Animation-->
+          <script src="HighchartsLoad.js"></script>      
+          <script src="modelanimation.js"></script>
+
+          <!-- Custom Script Loading -->
+         
+          <script src="reclaimer.js"></script>     
+          <script src="examples/maploader.js"></script>
+
+          <script src="calanderservice.js"></script>
+
+
+          <!-- ################### -->
+          <!-- Script Loading Area -->
+          <!-- ################### -->
+
+          <script type="text/javascript">
+
+
+            Highcharts.setOptions({
+              global: {
+                useUTC: false
+              }
+            });
+
+        $( document ).ready(function() {
+
+        ///////////////////
+        // DETECT BROWSER//
+        ///////////////////
+        detectBrowser("loadingArea");
+
+        ///////////////////////////
+        // LOAD EVENT DATA FILE //
+        /////////////////////////  
+        $.getJSON('eventData.json', function(data) {
+
+        three();
+
+        });
+
+        });
+var eventData=[]
+
+    ////////////////////////////////////
+    // POPULATE THE CALENDAR SERVICE //
+    //////////////////////////////////
+    var dir = "http://localhost/web1/SCADA/";
+    var fileextension = ".csv";
+    $.ajax({
+    //This will retrieve the contents of the folder if the folder is configured as 'browsable'
+    url: dir,
+    success: function (data) {
+      console.log(data)
+        $(data).find("a:contains(" + fileextension + ")").each(function () {
+          var filename = this.href.replace(window.location.host, "").replace("http:///web1/", "");
+          console.log(filename)
+          var filename = filename.replace(".csv", "");
+          console.log(filename)
+          eventData.push(
+          {
+            "date":filename,
+            "badge":true,
+            "title":"Click to Show Data",
+            "body":null,
+            "footer":null,
+            "classname":null
+          }
+          )
+        });
+        loadCalendar()
+        var obj = JSON.stringify(eventData, undefined, 4);
+
+      }
+    });
+
+
+
+
+
+
+
+  </script>
+
+
+</body>
+</html>

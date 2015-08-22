@@ -1,0 +1,532 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"l",
+				"length"
+			],
+			[
+				"draw",
+				"drawseglength"
+			],
+			[
+				"ange",
+				"angle2"
+			],
+			[
+				"of",
+				"offsetbelting"
+			],
+			[
+				"te",
+				"templengthvalue"
+			],
+			[
+				"dr",
+				"drawseglength"
+			],
+			[
+				"thi",
+				"thickness"
+			],
+			[
+				"li",
+				"lineTo"
+			],
+			[
+				"temp",
+				"tempvar2"
+			],
+			[
+				"tem",
+				"tempvar1"
+			],
+			[
+				"th",
+				"thickness"
+			],
+			[
+				"belt",
+				"beltwidth"
+			],
+			[
+				"be",
+				"beltwidth"
+			],
+			[
+				"m",
+				"maxlength"
+			],
+			[
+				"max",
+				"maxsegmentlength"
+			],
+			[
+				"an",
+				"angle2"
+			],
+			[
+				"a",
+				"angle3"
+			],
+			[
+				"if",
+				"if	if"
+			],
+			[
+				"con",
+				"console"
+			],
+			[
+				"for",
+				"for	for (…) {…}"
+			],
+			[
+				"bel",
+				"belting"
+			],
+			[
+				"number",
+				"numberofrolls"
+			],
+			[
+				"get",
+				"getContext"
+			],
+			[
+				"atr",
+				"atr2"
+			],
+			[
+				"ar",
+				"atri"
+			],
+			[
+				"ro",
+				"rolldiameter"
+			],
+			[
+				"id",
+				"idlerfacewidth"
+			],
+			[
+				"s",
+				"style	Attr"
+			],
+			[
+				"i",
+				"iframe	Tag"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"contents": "<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <title>Bootstrap 101 Template</title>\n\n    <!-- Bootstrap -->\n    <link href=\"css/bootstrap.min.css\" rel=\"stylesheet\">\n\n    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->\n    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->\n    <!--[if lt IE 9]>\n      <script src=\"https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js\"></script>\n      <script src=\"https://oss.maxcdn.com/respond/1.4.2/respond.min.js\"></script>\n    <![endif]-->\n  </head>\n  <body>\n\n<form class=\"form-horizontal\">\n<fieldset>\n\n<!-- Form Name -->\n<legend>Form Name</legend>\n\n<!-- Text input-->\n<div class=\"form-group\">\n  <label class=\"col-md-4 control-label\" for=\"textinput\">Text Input</label>  \n  <div class=\"col-md-4\">\n  <input id=\"textinput\" name=\"textinput\" type=\"text\" placeholder=\"placeholder\" class=\"form-control input-md\">\n  <span class=\"help-block\">help</span>  \n  </div>\n</div>\n\n<!-- Multiple Radios -->\n<div class=\"form-group\">\n  <label class=\"col-md-4 control-label\" for=\"radios\">Multiple Radios</label>\n  <div class=\"col-md-4\">\n  <div class=\"radio\">\n    <label for=\"radios-0\">\n      <input type=\"radio\" name=\"radios\" id=\"radios-0\" value=\"1\" checked=\"checked\">\n      Option one\n    </label>\n  </div>\n  <div class=\"radio\">\n    <label for=\"radios-1\">\n      <input type=\"radio\" name=\"radios\" id=\"radios-1\" value=\"2\">\n      Option two\n    </label>\n  </div>\n  </div>\n</div>\n\n<!-- Multiple Checkboxes -->\n<div class=\"form-group\">\n  <label class=\"col-md-4 control-label\" for=\"checkboxes\">Multiple Checkboxes</label>\n  <div class=\"col-md-4\">\n  <div class=\"checkbox\">\n    <label for=\"checkboxes-0\">\n      <input type=\"checkbox\" name=\"checkboxes\" id=\"checkboxes-0\" value=\"1\">\n      Option one\n    </label>\n  </div>\n  <div class=\"checkbox\">\n    <label for=\"checkboxes-1\">\n      <input type=\"checkbox\" name=\"checkboxes\" id=\"checkboxes-1\" value=\"2\">\n      Option two\n    </label>\n  </div>\n  </div>\n</div>\n\n<!-- Select Multiple -->\n<div class=\"form-group\">\n  <label class=\"col-md-4 control-label\" for=\"selectmultiple\">Select Multiple</label>\n  <div class=\"col-md-4\">\n    <select id=\"selectmultiple\" name=\"selectmultiple\" class=\"form-control\" multiple=\"multiple\">\n      <option value=\"1\">Option one</option>\n      <option value=\"2\">Option two</option>\n    </select>\n  </div>\n</div>\n\n<!-- Search input-->\n<div class=\"form-group\">\n  <label class=\"col-md-4 control-label\" for=\"searchinput\">Search Input</label>\n  <div class=\"col-md-4\">\n    <input id=\"searchinput\" name=\"searchinput\" type=\"search\" placeholder=\"placeholder\" class=\"form-control input-md\">\n    <p class=\"help-block\">help</p>\n  </div>\n</div>\n\n<!-- Select Basic -->\n<div class=\"form-group\">\n  <label class=\"col-md-4 control-label\" for=\"selectbasic\">Select Basic</label>\n  <div class=\"col-md-4\">\n    <select id=\"selectbasic\" name=\"selectbasic\" class=\"form-control\">\n      <option value=\"1\">Option one</option>\n      <option value=\"2\">Option two</option>\n    </select>\n  </div>\n</div>\n\n<!-- Multiple Checkboxes -->\n<div class=\"form-group\">\n  <label class=\"col-md-4 control-label\" for=\"checkboxes\">Multiple Checkboxes</label>\n  <div class=\"col-md-4\">\n  <div class=\"checkbox\">\n    <label for=\"checkboxes-0\">\n      <input type=\"checkbox\" name=\"checkboxes\" id=\"checkboxes-0\" value=\"1\">\n      Option one\n    </label>\n  </div>\n  <div class=\"checkbox\">\n    <label for=\"checkboxes-1\">\n      <input type=\"checkbox\" name=\"checkboxes\" id=\"checkboxes-1\" value=\"2\">\n      Option two\n    </label>\n  </div>\n  </div>\n</div>\n\n<!-- Textarea -->\n<div class=\"form-group\">\n  <label class=\"col-md-4 control-label\" for=\"textarea\">Text Area</label>\n  <div class=\"col-md-4\">                     \n    <textarea class=\"form-control\" id=\"textarea\" name=\"textarea\">default text</textarea>\n  </div>\n</div>\n\n<!-- Appended checkbox -->\n<div class=\"form-group\">\n  <label class=\"col-md-4 control-label\" for=\"appendedcheckbox\">Appended Checkbox</label>\n  <div class=\"col-md-4\">\n    <div class=\"input-group\">\n      <input id=\"appendedcheckbox\" name=\"appendedcheckbox\" class=\"form-control\" type=\"text\" placeholder=\"placeholder\">\n          <span class=\"input-group-addon\">     \n          <input type=\"checkbox\">     \n      </span>\n    </div>\n    <p class=\"help-block\">help</p>\n  </div>\n</div>\n\n<!-- Button -->\n<div class=\"form-group\">\n  <label class=\"col-md-4 control-label\" for=\"singlebutton\">Single Button</label>\n  <div class=\"col-md-4\">\n    <button id=\"singlebutton\" name=\"singlebutton\" class=\"btn btn-primary\">Button</button>\n  </div>\n</div>\n\n</fieldset>\n</form>\n\n\n\n\n<h2>JSON</h2>\n<pre id=\"result\">\n</pre>\n\n    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->\n    <script src=\"https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js\"></script>\n<script type=\"text/javascript\">\n  \n// Use internal $.serializeArray to get list of form elements which is consistent with $.serialize\n//\n// And to avoid names such as \n// => object[\"favorite-color\"]\n//\n// We camelcase the name part, so the notation becomes \n// => object[\"favoriteColor\"]\n//\n// Conveniently, this allows period notation to be used.\n// => object.favoriteColor\n//\n// This behaviour is similar to $(element).data()\n//\n// $('<div data-favorite-color=\"yellow\"></div>').data()\n// => { favoriteColor: 'yellow' }\n$.fn.serializeObject = function() {\n    var o = Object.create(null),\n        elementMapper = function(element) {\n            element.name = $.camelCase(element.name);\n            return element;\n        },\n        appendToResult = function(i, element) {\n            var node = o[element.name];\n\n            if ('undefined' != typeof node && node !== null) {\n                o[element.name] = node.push ? node.push(element.value) : [node, element.value];\n            } else {\n                o[element.name] = element.value;\n            }\n        };\n\n    $.each($.map(this.serializeArray(), elementMapper), appendToResult);\n    return o;\n};\n\n//\n// TEST\n//\n$(function() {\n    $('form').submit(function() {\n        $('#result').text(JSON.stringify($('form').serializeObject()));\n        return false;\n    });\n});\n\n$.ajax({\n          type: 'GET', \n          url: 'http://localhost/',\n          success: function(data) {\n            alert('success');\n          }, error: function (data) {\n            alert('failed');\n          }\n    });\n\n\n</script>\n\n\n    <!-- Include all compiled plugins (below), or include individual files as needed -->\n    <script src=\"js/bootstrap.min.js\"></script>\n  </body>",
+			"file": "/C/Users/User/Desktop/New folder (5)/index.html",
+			"file_size": -1,
+			"file_write_time": -1,
+			"settings":
+			{
+				"buffer_size": 6623,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"contents": "<script>\nfunction showCustomer(str)\n{\nvar xmlhttp;    \nif (str==\"\")\n  {\n  document.getElementById(\"txtHint\").innerHTML=\"\";\n  return;\n  }\nif (window.XMLHttpRequest)\n  {// code for IE7+, Firefox, Chrome, Opera, Safari\n  xmlhttp=new XMLHttpRequest();\n  }\nelse\n  {// code for IE6, IE5\n  xmlhttp=new ActiveXObject(\"Microsoft.XMLHTTP\");\n  }\nxmlhttp.onreadystatechange=function()\n  {\n  if (xmlhttp.readyState==4 && xmlhttp.status==200)\n    {\n    document.getElementById(\"txtHint\").innerHTML=xmlhttp.responseText;\n    }\n  }\nxmlhttp.open(\"GET\",\"getcustomer.asp?q=\"+str,true);\nxmlhttp.send();\n}\n</script>\n</head>\n<body>\n\n<form action=\"\"> \n<select name=\"customers\" onchange=\"showCustomer(this.value)\">\n<option value=\"\">Select a customer:</option>\n<option value=\"ALFKI\">Alfreds Futterkiste</option>\n<option value=\"NORTS \">North/South</option>\n<option value=\"WOLZA\">Wolski Zajazd</option>\n</select>\n</form>\n<br>\n<div id=\"txtHint\">Customer info will be listed here...</div>",
+			"settings":
+			{
+				"buffer_size": 959,
+				"line_ending": "Windows",
+				"name": "<script>"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/C/Users/User/Documents/My Box Files/WEB/2rollbelt.js",
+		"/C/Users/User/Documents/My Box Files/WEB/Canvas rev 3.2.html",
+		"/C/Users/User/Documents/My Box Files/WEB/1rollbelt.js",
+		"/C/Users/User/Documents/My Box Files/WEB/Canvas rev 3.0.html",
+		"/C/Users/User/Documents/My Box Files/WEB/Canvas rev 2.9.html",
+		"/F/Torrents/Sid.Meiers.Civilization.Beyond.Earth-RELOADED[rarbg]/reloaded.nfo",
+		"/C/Program Files/Sublime Text 3/changelog.txt",
+		"/C/Users/User/Documents/My Box Files/WEB/Canvas rev 2.7.html",
+		"/C/Users/User/Documents/My Box Files/WEB/5rollbelt.js",
+		"/C/Users/User/Documents/My Box Files/WEB/Canvas rev 2.6.html",
+		"/C/Users/User/Documents/My Box Files/Default Sync Folder/Canvas rev 2.1.html",
+		"/C/Users/User/Documents/My Box Files/Default Sync Folder/Canvas.html",
+		"/C/Users/User/Documents/My Box Files/Default Sync Folder/Canvas Rev 1.html",
+		"/C/Users/User/Documents/My Box Files/Important Stuff/Canvas rev1.html",
+		"/C/wamp/www/js/profile.js",
+		"/C/Users/User/Desktop/home page.html",
+		"/C/Windows/System32/Drivers/etc/hosts",
+		"/C/wamp/www/js/paulkinzett-toolbar-63a089b/jquery.toolbar.js",
+		"/C/wamp/www/js/Test.js",
+		"/C/wamp/www/js/list.js",
+		"/C/Users/User/Desktop/list.html",
+		"/C/wamp/www/wp-content/themes/canvas/my-custom-page.php",
+		"/C/Program Files (x86)/Space Run/oSpaceGame.exe",
+		"/C/wamp/www/mh/wp-config.php",
+		"/F/wamp/www/mh/wp-config.php",
+		"/F/wamp/apps/phpmyadmin4.0.4/config.inc.php",
+		"/C/wamp/www/mh/.htaccess",
+		"/F/Music 2014/Pearl Jam - Lightning Bolt [2013] 320/Lightning Bolt @ 320/01 - Getaway.mp3",
+		"/F/Music 2014/Pearl Jam - Lightning Bolt [2013] 320/Lightning Bolt @ 320/12 - Future Days.mp3",
+		"/F/Music 2014/Pearl Jam - Lightning Bolt [2013] 320/Lightning Bolt @ 320/11 - Yellow Moon.mp3",
+		"/F/Music 2014/Pearl Jam - Lightning Bolt [2013] 320/Lightning Bolt @ 320/07 - Pendulum.mp3",
+		"/F/Music 2014/Pearl Jam - Lightning Bolt [2013] 320/Lightning Bolt @ 320/08 - Swallowed Whole.mp3",
+		"/F/Music 2014/Pearl Jam - Lightning Bolt [2013] 320/Lightning Bolt @ 320/09 - Let The Records Play.mp3",
+		"/F/Music 2014/Pearl Jam - Lightning Bolt [2013] 320/Lightning Bolt @ 320/06 - Infallible.mp3",
+		"/F/Music 2014/Pearl Jam - Lightning Bolt [2013] 320/Lightning Bolt @ 320/10 - Sleeping By Myself.mp3",
+		"/F/Music 2014/Pearl Jam - Lightning Bolt [2013] 320/Lightning Bolt @ 320/03 - My Father' S Son.mp3",
+		"/F/Music 2014/Pearl Jam - Lightning Bolt [2013] 320/Lightning Bolt @ 320/04 - Sirens.mp3",
+		"/C/Users/User/Desktop/Table.js",
+		"/F/Music 2014/Pearl Jam - Lightning Bolt [2013] 320/Lightning Bolt @ 320/02 - Mind Your Manners.mp3",
+		"/F/Music 2014/Pearl Jam - Lightning Bolt [2013] 320/Lightning Bolt @ 320/05 - Lightning Bolt.mp3",
+		"/F/ShiftBulk Backup/wp-config.php",
+		"/F/ShiftBulk Backup/view-php-info.php",
+		"/C/Users/User/Desktop/403.shtml",
+		"/C/Users/User/Desktop/Profile Page - Rev 1.htm",
+		"/C/Users/User/Desktop/table.js",
+		"/C/Users/User/Desktop/bp rev 1.css",
+		"/C/Users/User/Desktop/bp.css",
+		"/C/Users/User/Desktop/custom Rev 1.css",
+		"/C/Users/User/Desktop/working.js",
+		"/C/Users/User/Documents/My Box Files/SharePoint Backup/Collahausi/css/bootstrap-responsive.css",
+		"/C/Users/User/Desktop/1.htm",
+		"/C/Users/User/Documents/My Box Files/Mapcalc/mapcalc-plugin.php",
+		"/C/Users/User/Documents/My Box Files/Mapcalc/Includes/custom-functions.php",
+		"/C/Users/User/Documents/My Box Files/SharePoint Backup/Collahausi/Frame.htm",
+		"/C/Users/User/Documents/My Box Files/SharePoint Backup/Collahausi/js/mapjs.js",
+		"/C/Users/User/Documents/My Box Files/SharePoint Backup/Collahausi/Profile Page - Rev 1 - Copy - Copy.htm",
+		"/C/Users/User/Documents/My Box Files/SharePoint Backup/Collahausi/js/loadformdata.js",
+		"/C/Users/User/Documents/My Box Files/Mapcalc/readme.txt",
+		"/C/Users/User/Documents/My Box Files/SharePoint Backup/Collahausi/Profile Page - Rev 1 - Copy.htm",
+		"/C/Users/User/Documents/My Box Files/SharePoint Backup/Collahausi/Profile Page - Rev 1 - Copy (2).htm",
+		"/C/Users/User/Documents/My Box Files/SharePoint Backup/Collahausi/Frame.html.htm",
+		"/C/Users/User/Documents/My Box Files/SharePoint Backup/Collahausi/Profile Page - Rev 1.htm",
+		"/C/Users/User/Documents/My Box Files/SharePoint Backup/Collahausi/js/Elevation.js",
+		"/C/Users/User/Desktop/New Folder/Fing brilliant/js/mapjs.js",
+		"/C/Users/User/Desktop/website backp.css",
+		"/C/Users/User/Desktop/1.html"
+	],
+	"find":
+	{
+		"height": 34.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"$",
+			"actualbeltline[2]",
+			"drawseglength[1",
+			"drawseglength[1]",
+			"tempvar2",
+			"surcharge",
+			"toFixed",
+			"3.14159",
+			"moveTo",
+			"();\n",
+			"tempvariable1",
+			"thickness",
+			"angle1",
+			"console.log",
+			"console.log(maxlength)",
+			";",
+			"=",
+			"var",
+			"maxlength",
+			"angle2",
+			"angle3",
+			"angle2",
+			"6",
+			"5",
+			"4",
+			"angle3",
+			"angle2*2",
+			"angle2/2",
+			"angle1",
+			"angle3",
+			"angle1",
+			"angle3/2",
+			"context",
+			"angle2",
+			"angle1",
+			"offsetbelting",
+			"radiussetback1",
+			"radiussetback",
+			"angle",
+			"i",
+			"console.log",
+			"belting",
+			"context",
+			"troughangle",
+			"troughanglerads",
+			"context",
+			"numberofrolls",
+			"lengthbelt=lengthbelt+Math.sqrt(x^2+y^2);\nconsole.log(lengthbelt)",
+			"autocad",
+			"rectan",
+			"radiussetback",
+			"drawvar",
+			"str1",
+			"yes",
+			"drawvar[i][2]==1",
+			"1",
+			"1]",
+			"1",
+			"500",
+			"800",
+			"context",
+			"consol",
+			"var ",
+			"context",
+			"D37",
+			"D38",
+			"location.A)",
+			"red",
+			"80",
+			"purple",
+			"h2",
+			"event.preventDefault()",
+			"searchClass",
+			"$",
+			"silver",
+			"h7",
+			"h4",
+			"h2",
+			"h5",
+			"h5>",
+			" style=\"font-size:9px;padding:1px;\"",
+			"style=\"font-size:9px;padding:1px;\"",
+			"shiftbulk",
+			"Shiftbulk",
+			"<p>",
+			"</p>",
+			"h4",
+			"h1",
+			"tabledata",
+			"-",
+			"403",
+			"]",
+			"[",
+			"]",
+			"&#xe05b;",
+			"hide(\"slow\")",
+			"ECECEC",
+			"show(\"slow\")",
+			"show()",
+			"hide()",
+			"th",
+			"<p>",
+			"60px",
+			"location.lat()",
+			"location.lng()",
+			" Area",
+			"elevations",
+			"i",
+			"kkk",
+			"results",
+			"footer",
+			"Latitude Head",
+			"technical",
+			"tec"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 1,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "/C/Users/User/Desktop/New folder (5)/index.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 6623,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								6084,
+								6084
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 2419.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 959,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								330,
+								330
+							]
+						],
+						"settings":
+						{
+							"auto_name": "<script>",
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 27.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"project": "sbp.sublime-project",
+	"replace":
+	{
+		"height": 50.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"selected_items":
+		[
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 150.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2">
+<Document>
+<GroundOverlay>
+<name>Ex_SRTM_kolomela_utm35s.png</name>
+<Icon>
+<href>Ex_SRTM_kolomela_utm35s.png</href>
+</Icon>
+<LatLonBox>
+<north>-28.176238</north>
+<south>-28.5360027</south>
+<east>23.1354482</east>
+<west>22.7256018</west>
+</LatLonBox>
+<LookAt>
+<longitude>22.9312395</longitude>
+<latitude>-28.3565964</latitude>
+<heading>0.03</heading>
+<range>88914.75</range>
+</LookAt>
+</GroundOverlay>
+</Document>
+</kml>

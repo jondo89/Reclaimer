@@ -1,0 +1,125 @@
+
+<!DOCTYPE HTML>
+<html lang="en"><head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>SANS 1313 - Idler Loading Profiles</title>
+  <style type="text/css" media="screen">
+    canvas { display:block; margin:1em auto; background:#fff; border:1px solid #ccc }
+  </style>
+</head>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+<body>
+
+<div> 
+  <h1> SANS 1313 - Idler loading profiles</h1>
+</div>
+
+<canvas id="canvas"></canvas>
+
+<div class="row">
+ <div class="col-md-3">
+ <h2>Data Tables</h2>
+<table  class="table table-bordered" id="Variabletable">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Value</th>
+      <th>Unit</td>
+    </tr>
+  </thead>
+<tbody id="Variabletablebody">
+</tbody>
+</table>
+</div>
+
+<div class="col-md-3">
+<form class="form-horizontal" id="workingform">
+<fieldset>
+<h2>Inputs</h2>
+
+  <input name="radiussetback" value="75"  type="number" id="Radiussetback">Radius Setback</input>
+  <input name="Tracking" value="0"   type="number" id="Tracking">Tracking</input>
+  <input name="troughangle" value="35"  type="range"  id="angle" min="0" max="180"   step="1">Trough Angle</input>
+  <input name="rollwidth" value="340" type="number" id="rollwidth">Roll Width</input>    
+  <input name="rolloverlap" value="-40" type="number" id="rolloverlap">Roll Overlap</input>
+  <input name="shaftseries" value="25"  type="number" id="shaftseries">Shaft Series</input>    
+  <input name="guagelength" value="350" type="number" id="guagelength">Guage Length</input>
+  <input name="flatlength" value="14"  type="number" id="flatlength">Flat Length</input>  
+  <input name="" value="14"  type="range"  id="beltwidth" min="0" max="1000"   step="1">Belt Width</input>
+  <input name="beltwidth" value="14"  type="range"  id="beltwidthval" >Belt Width</input>
+  <input name="freeboard" value="75"  type="number" id="freeboard">Freeboard</input>  
+  <input name="surcharge" value="22"  type="number" id="surcharge">Surcharge Angle</input>
+  <input name="beltthickness" value="22"  type="number" id="thickness">Belt Thickness</input>  
+  <input name="" value="22"  type="number" id="thickness">Belt Speed</input>
+  <input name="" value="22"  type="number" id="Area">Cross Sectional Area</input> 
+  <input name="" value="22"  type="number" id="Density">Bulk Density</input>
+  <input name="" value="22"  type="number" id="Capacity">Belt Capacity</input>
+
+  <select name="rolldiameter" id="diameter">
+  <option value="101">101</option>
+  <option value="127" selected="selected">127</option>
+  <option value="152">152</option>
+  <option value="178">178</option>
+  <option value="630">630</option>
+
+  </select>
+  <select  name="numberofrolls" id="numberofrolls1">
+  <option value="1">1</option>
+  <option value="2">2</option>
+  <option value="3" selected="selected">3</option>
+  <option value="5">5</option>
+  </select>
+
+<!-- Multiple Radios -->
+<div class="control-group">
+  <label class="control-label" for="radios">Is there material on the Belt?</label>
+  <div class="controls">
+    <label class="radio" for="radios-0">
+      <input type="radio" name="ismaterial" id="radios-0" value="Yes" checked="checked">
+      Yes
+    </label>
+    <label class="radio" for="radios-1">
+      <input type="radio" name="ismaterial" id="radios-1" value="No">
+      No
+    </label>
+  </div>
+</div>
+
+  <textarea name="paragraph_text" cols="50" rows="10" id="belting" style="display"></textarea>
+</fieldset>
+</form>
+
+
+</div>
+<h2>JSON</h2>
+<pre id="result">
+</pre>
+
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="js/bootstrap.min.js"></script>
+
+
+
+
+
+<script type="text/javascript" charset="utf-8">
+//
+// This is the JSON from form capture
+//
+$(function() {
+    $('form').change(function() {
+        $('#result').text(JSON.stringify($('form').serializeObject()));
+        var data = (($('form').serializeObject()))
+
+        return false;
+
+    });
+});
+</script>
+</body></html>

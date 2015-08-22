@@ -1,0 +1,434 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"belt",
+				"beltwidth"
+			],
+			[
+				"be",
+				"beltwidth"
+			],
+			[
+				"m",
+				"maxlength"
+			],
+			[
+				"max",
+				"maxsegmentlength"
+			],
+			[
+				"an",
+				"angle2"
+			],
+			[
+				"a",
+				"angle3"
+			],
+			[
+				"if",
+				"if	if"
+			],
+			[
+				"con",
+				"console"
+			],
+			[
+				"for",
+				"for	for (…) {…}"
+			],
+			[
+				"bel",
+				"belting"
+			],
+			[
+				"number",
+				"numberofrolls"
+			],
+			[
+				"dr",
+				"draw"
+			],
+			[
+				"get",
+				"getContext"
+			],
+			[
+				"atr",
+				"atr2"
+			],
+			[
+				"ar",
+				"atri"
+			],
+			[
+				"ro",
+				"rolldiameter"
+			],
+			[
+				"id",
+				"idlerfacewidth"
+			],
+			[
+				"s",
+				"style	Attr"
+			],
+			[
+				"i",
+				"iframe	Tag"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "/F/Torrents/Sid.Meiers.Civilization.Beyond.Earth-RELOADED[rarbg]/reloaded.nfo",
+			"settings":
+			{
+				"buffer_size": 5936,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/C/Users/User/Documents/My Box Files/WEB/2rollbelt.js",
+		"/C/Users/User/Documents/My Box Files/WEB/Canvas rev 2.9.html",
+		"/C/Program Files/Sublime Text 3/changelog.txt",
+		"/C/Users/User/Documents/My Box Files/WEB/Canvas rev 2.7.html",
+		"/C/Users/User/Documents/My Box Files/WEB/5rollbelt.js",
+		"/C/Users/User/Documents/My Box Files/WEB/Canvas rev 2.6.html",
+		"/C/Users/User/Documents/My Box Files/WEB/1rollbelt.js",
+		"/C/Users/User/Documents/My Box Files/Default Sync Folder/Canvas rev 2.1.html",
+		"/C/Users/User/Documents/My Box Files/Default Sync Folder/Canvas.html",
+		"/C/Users/User/Documents/My Box Files/Default Sync Folder/Canvas Rev 1.html",
+		"/C/Users/User/Documents/My Box Files/Important Stuff/Canvas rev1.html",
+		"/C/wamp/www/js/profile.js",
+		"/C/Users/User/Desktop/home page.html",
+		"/C/Windows/System32/Drivers/etc/hosts",
+		"/C/wamp/www/js/paulkinzett-toolbar-63a089b/jquery.toolbar.js",
+		"/C/wamp/www/js/Test.js",
+		"/C/wamp/www/js/list.js",
+		"/C/Users/User/Desktop/list.html",
+		"/C/wamp/www/wp-content/themes/canvas/my-custom-page.php",
+		"/C/Program Files (x86)/Space Run/oSpaceGame.exe",
+		"/C/wamp/www/mh/wp-config.php",
+		"/F/wamp/www/mh/wp-config.php",
+		"/F/wamp/apps/phpmyadmin4.0.4/config.inc.php",
+		"/C/wamp/www/mh/.htaccess",
+		"/F/Music 2014/Pearl Jam - Lightning Bolt [2013] 320/Lightning Bolt @ 320/01 - Getaway.mp3",
+		"/F/Music 2014/Pearl Jam - Lightning Bolt [2013] 320/Lightning Bolt @ 320/12 - Future Days.mp3",
+		"/F/Music 2014/Pearl Jam - Lightning Bolt [2013] 320/Lightning Bolt @ 320/11 - Yellow Moon.mp3",
+		"/F/Music 2014/Pearl Jam - Lightning Bolt [2013] 320/Lightning Bolt @ 320/07 - Pendulum.mp3",
+		"/F/Music 2014/Pearl Jam - Lightning Bolt [2013] 320/Lightning Bolt @ 320/08 - Swallowed Whole.mp3",
+		"/F/Music 2014/Pearl Jam - Lightning Bolt [2013] 320/Lightning Bolt @ 320/09 - Let The Records Play.mp3",
+		"/F/Music 2014/Pearl Jam - Lightning Bolt [2013] 320/Lightning Bolt @ 320/06 - Infallible.mp3",
+		"/F/Music 2014/Pearl Jam - Lightning Bolt [2013] 320/Lightning Bolt @ 320/10 - Sleeping By Myself.mp3",
+		"/F/Music 2014/Pearl Jam - Lightning Bolt [2013] 320/Lightning Bolt @ 320/03 - My Father' S Son.mp3",
+		"/F/Music 2014/Pearl Jam - Lightning Bolt [2013] 320/Lightning Bolt @ 320/04 - Sirens.mp3",
+		"/C/Users/User/Desktop/Table.js",
+		"/F/Music 2014/Pearl Jam - Lightning Bolt [2013] 320/Lightning Bolt @ 320/02 - Mind Your Manners.mp3",
+		"/F/Music 2014/Pearl Jam - Lightning Bolt [2013] 320/Lightning Bolt @ 320/05 - Lightning Bolt.mp3",
+		"/F/ShiftBulk Backup/wp-config.php",
+		"/F/ShiftBulk Backup/view-php-info.php",
+		"/C/Users/User/Desktop/403.shtml",
+		"/C/Users/User/Desktop/Profile Page - Rev 1.htm",
+		"/C/Users/User/Desktop/table.js",
+		"/C/Users/User/Desktop/bp rev 1.css",
+		"/C/Users/User/Desktop/bp.css",
+		"/C/Users/User/Desktop/custom Rev 1.css",
+		"/C/Users/User/Desktop/working.js",
+		"/C/Users/User/Documents/My Box Files/SharePoint Backup/Collahausi/css/bootstrap-responsive.css",
+		"/C/Users/User/Desktop/1.htm",
+		"/C/Users/User/Documents/My Box Files/Mapcalc/mapcalc-plugin.php",
+		"/C/Users/User/Documents/My Box Files/Mapcalc/Includes/custom-functions.php",
+		"/C/Users/User/Documents/My Box Files/SharePoint Backup/Collahausi/Frame.htm",
+		"/C/Users/User/Documents/My Box Files/SharePoint Backup/Collahausi/js/mapjs.js",
+		"/C/Users/User/Documents/My Box Files/SharePoint Backup/Collahausi/Profile Page - Rev 1 - Copy - Copy.htm",
+		"/C/Users/User/Documents/My Box Files/SharePoint Backup/Collahausi/js/loadformdata.js",
+		"/C/Users/User/Documents/My Box Files/Mapcalc/readme.txt",
+		"/C/Users/User/Documents/My Box Files/SharePoint Backup/Collahausi/Profile Page - Rev 1 - Copy.htm",
+		"/C/Users/User/Documents/My Box Files/SharePoint Backup/Collahausi/Profile Page - Rev 1 - Copy (2).htm",
+		"/C/Users/User/Documents/My Box Files/SharePoint Backup/Collahausi/Frame.html.htm",
+		"/C/Users/User/Documents/My Box Files/SharePoint Backup/Collahausi/Profile Page - Rev 1.htm",
+		"/C/Users/User/Documents/My Box Files/SharePoint Backup/Collahausi/js/Elevation.js",
+		"/C/Users/User/Desktop/New Folder/Fing brilliant/js/mapjs.js",
+		"/C/Users/User/Desktop/website backp.css",
+		"/C/Users/User/Desktop/1.html"
+	],
+	"find":
+	{
+		"height": 27.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"console.log",
+			"console.log(maxlength)",
+			";",
+			"=",
+			"var",
+			"maxlength",
+			"angle2",
+			"angle3",
+			"angle2",
+			"6",
+			"5",
+			"4",
+			"angle3",
+			"angle2*2",
+			"angle2/2",
+			"angle1",
+			"angle3",
+			"angle1",
+			"angle3/2",
+			"context",
+			"angle2",
+			"angle1",
+			"offsetbelting",
+			"radiussetback1",
+			"radiussetback",
+			"angle",
+			"i",
+			"console.log",
+			"belting",
+			"context",
+			"troughangle",
+			"troughanglerads",
+			"context",
+			"numberofrolls",
+			"lengthbelt=lengthbelt+Math.sqrt(x^2+y^2);\nconsole.log(lengthbelt)",
+			"autocad",
+			"rectan",
+			"radiussetback",
+			"drawvar",
+			"str1",
+			"yes",
+			"drawvar[i][2]==1",
+			"1",
+			"1]",
+			"1",
+			"500",
+			"800",
+			"context",
+			"consol",
+			"var ",
+			"context",
+			"D37",
+			"D38",
+			"location.A)",
+			"red",
+			"80",
+			"purple",
+			"h2",
+			"event.preventDefault()",
+			"searchClass",
+			"$",
+			"silver",
+			"h7",
+			"h4",
+			"h2",
+			"h5",
+			"h5>",
+			" style=\"font-size:9px;padding:1px;\"",
+			"style=\"font-size:9px;padding:1px;\"",
+			"shiftbulk",
+			"Shiftbulk",
+			"<p>",
+			"</p>",
+			"h4",
+			"h1",
+			"tabledata",
+			"-",
+			"403",
+			"]",
+			"[",
+			"]",
+			"&#xe05b;",
+			"hide(\"slow\")",
+			"ECECEC",
+			"show(\"slow\")",
+			"show()",
+			"hide()",
+			"th",
+			"<p>",
+			"60px",
+			"location.lat()",
+			"location.lng()",
+			" Area",
+			"elevations",
+			"i",
+			"kkk",
+			"results",
+			"footer",
+			"Latitude Head",
+			"technical",
+			"tec"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "/F/Torrents/Sid.Meiers.Civilization.Beyond.Earth-RELOADED[rarbg]/reloaded.nfo",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5936,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1368.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 27.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"project": "sbp.sublime-project",
+	"replace":
+	{
+		"height": 50.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"selected_items":
+		[
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 150.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

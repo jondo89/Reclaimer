@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Calculation Engine</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" media="screen" href="https://cdnjs.cloudflare.com/ajax/libs/handsontable/0.12.2/handsontable.css">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+
+<div class="col-md-11">
+<legend>Calculation Engine</legend>
+
+
+<div class="row col-md-4">
+  <div class="panel panel-default">
+    <div class="panel-heading">Function Filter</div>
+    <div class="panel-body">
+      <select multiple class="form-control" id="functionFilter">
+        <option selected="">InputForm</option>
+        <option selected="">JSONString</option>
+        <option selected="">CapturedData</option>
+        <option selected="">DatabaseScheme</option>
+        <option selected="">ForceDirectedDiagram</option>
+        <option selected="">canvasArea</option>
+      </select>
+      <p>CTRL Click for multiple</p>
+    </div>  
+  </div>  
+
+  <div class="panel panel-danger" id="ForceDirectedDiagram">
+    <div class="panel-heading">Force Directed Diagram</div>
+    <div id="container" style="width:90%;height:250px"></div>
+   </div>
+
+  <div class="panel panel-default" id="CapturedData">
+    <div  class="panel-heading">Captured Data</div>
+          <table class="table table-bordered" id="Variabletable">
+            <thead>
+              <tr>
+                <th>Name</th><th>Value</th><th>Unit</td>
+                </tr>
+              </thead>
+              <tbody id="Variabletablebody">
+              </tbody>
+            </table>
+
+   </div>
+
+  <div class="panel panel-default" id="JSONString">
+    <div  class="panel-heading">JSON String</div>
+          <pre id="result">
+          </pre>
+   </div>
+
+</div>  
+
+
+
+
+<div class="row col-md-8">
+<div class="row col-md-12" style="padding-left:55px">
+
+  <div class="panel panel-primary" id="canvasArea">
+    <div  class="panel-heading">Canvas Area</div>
+    <form class="form-group">
+      <fieldset>
+        <!-- Form Name -->
+        <div></div>
+      </fieldset>
+    </form>
+  </div>
+
+  <div class="panel panel-default" id="InputForm">
+    <div  class="panel-heading">Input Form</div>
+    <form class="form-group" id="workingform">
+      <fieldset>
+        <!-- Form Name -->
+        <div id="textarea"></div>
+      </fieldset>
+    </form>
+  </div>
+
+
+
+
+</div>
+
+       
+
+  
+
+
+</div>
+
+<div class="row col-md-12">
+
+
+  <div class="panel panel-default" id="DatabaseScheme">
+    <div class="panel-heading">Database Scheme</div>
+<div id="example1" class="handsontable"  style="font-size:11px;width:100%;">
+   </div>
+</div>    
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handsontable/0.12.2/handsontable.full.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sigma.js/1.0.3/sigma.js"></script>
+
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="js/bootstrap.min.js"></script>
+<script src="isotope/isotope.pkgd.min.js"></script>
+
+<script src="index.js"></script>
+<script src="calculationinput.js"></script>
+<script src="forcedirectedgraph.js"></script>
+<script src="databasescheme.js"></script>
+<script src="drawinputs.js"></script>
+
+
+
+<script type="text/javascript">
+//this is the activation area for the JAVASCRIPT on the page
+
+//this is the function to call the input variable.
+var input = inputvariable();
+
+//this draws the sigma graph to the directed continer
+drawsigmjsgraph(input,"container");
+
+//this draws the Hotables of the databse scheme
+drawhotable(input,'example1');
+
+//this is to draw the inputs at a specific location
+drawinputs(input,"textarea");
+
+
+  //add event listner to location.
+  var locations ="textarea"
+  $( "#"+locations ).change(function(event) {
+    //-------------------------------------------------
+    
+    //this puts the extracted JSON Data into a text area.
+    var tempLocation = "result"
+    $('#'+tempLocation).text(JSON.stringify($('form').serializeObject()))
+
+    //this line is pull the form data into a JSON array
+    var data = (($('form').serializeObject()))
+
+    //-------------------------------------------------
+    //This pulls the array into the data table
+    drawTable(data,"Variabletablebody","Variabletable")
+
+    //-------------------------------------------------
+    //this gets the name of the triggered input box
+    var triggerInput = eval(event.target.id)
+
+    //-------------------------------------------------
+    //this is fuction to handle the formula rpcess and output.
+    calculationfunction(data,triggerInput,input);
+
+
+});
+
+
+
+//this is used to hide components of the calculation.
+  $( "#functionFilter" ).change(function(event) {
+      var selected = [];
+      var noselected = [];
+
+    $.each($('#functionFilter option'), function (key, value) {
+
+        if (!$(this).prop('selected')) {
+            noselected.push ($(this).val());
+        } else {
+            selected.push( $(this).val());
+        }
+    });
+    console.log(selected)
+    console.log(noselected)
+
+    for (var i = 0; i < noselected.length; i++) {
+        $('#'+noselected[i]).css({
+            'visibility' : 'hidden',                
+            'height' : '0px',
+            'width' : '0px'
+        });
+    };
+
+
+    for (var i = 0; i < selected.length; i++) {
+        $('#'+selected[i]).css({
+            'visibility' : 'initial',      
+            'height' : '100%',
+            'width' : '100%'        
+        });
+    };
+
+
+});
+
+
+
+</script>    
+  </body>
+</html>
